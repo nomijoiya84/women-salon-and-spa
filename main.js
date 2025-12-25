@@ -124,9 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Sticky Header Scroll Effect
+    // Sticky Header & Back to Top Button
     const header = document.getElementById('header');
+    const backToTop = document.getElementById('back-to-top');
+
     window.addEventListener('scroll', () => {
+        // Clear header logic
         if (window.scrollY > 50) {
             header.style.padding = '10px 0';
             header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
@@ -134,5 +137,21 @@ document.addEventListener('DOMContentLoaded', () => {
             header.style.padding = '0';
             header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
         }
+
+        // Back to Top logic
+        if (window.scrollY > 500) {
+            backToTop.classList.add('show');
+        } else {
+            backToTop.classList.remove('show');
+        }
     });
+
+    if (backToTop) {
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
